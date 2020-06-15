@@ -1,24 +1,25 @@
 import React, { useState } from 'react';
-import { Route } from "react-router-dom";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import SavedList from './Movies/SavedList';
+import MovieList from "./Movies/MovieList";
+import Movie from "./Movies/Movie";
 
-
-const App = () => {
+const App = () => { //why can't I put export default here?
   const [savedList, setSavedList] = useState( [] );
+  const [movieList, setMovieList] = useState(); //is this in the correct spot?
 
   const addToSavedList = movie => {
     setSavedList( [...savedList, movie] );
   };
 
   return (
-    <div>
-      <SavedList list={savedList} />
-      <div>Replace this Div with your Routes</div>
-    </div>
+    <Router>
+      <Route exact path = "/"><MovieList></MovieList></Route>
+      <Route path = "/movies/:id"><Movie></Movie></Route>
+    </Router>
   );
 };
 
 export default App;
-//still workinggggg
+
